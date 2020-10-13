@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@android:color/white"
     android:padding="20dp"
     tools:context=".View.LoginActivity">
 
@@ -16,6 +17,7 @@
         android:src="@drawable/ic_car" />
 
     <TextView
+        android:id="@+id/txtSlogan"
         android:transitionName="txtSlogan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,13 +27,16 @@
         android:textSize="36sp" />
 
     <TextView
+        android:id="@+id/txtTitle"
+        android:transitionName="txtTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:text="Sign In To Continue"
+        android:text="Sign in to continue"
         android:textSize="18dp" />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:transitionName="edtUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -47,6 +52,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:transitionName="edtPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:passwordToggleEnabled="true"
@@ -72,22 +78,22 @@
 
     <Button
         android:id="@+id/btnLogin"
+        android:transitionName="btn1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:layout_gravity="right"
         android:background="@android:color/black"
         android:textColor="@android:color/white"
         android:text="Login"/>
 
     <Button
         android:id="@+id/btnSignUp"
+        android:transitionName="btn2"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_gravity="center_horizontal"
         android:background="@android:color/white"
-        android:fontFamily="@font/antic"
         android:text="New User? Sign up"/>
 
 </LinearLayout>
