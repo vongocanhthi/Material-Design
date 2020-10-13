@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,33 +8,33 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:background="@android:color/white"
+        android:orientation="vertical"
         android:padding="20dp"
         tools:context=".View.LoginActivity">
 
         <ImageView
             android:id="@+id/imgLogo"
-            android:transitionName="imgLogo"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/ic_car" />
+            android:src="@drawable/ic_car"
+            android:transitionName="imgLogo" />
 
         <TextView
-            android:transitionName="txtSlogan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/bungee"
             android:text="Welcome !!!"
             android:textColor="@android:color/black"
-            android:textSize="36sp" />
+            android:textSize="36sp"
+            android:transitionName="txtSlogan" />
 
         <TextView
-            android:transitionName="txtTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Sign up to start"
-            android:textSize="18dp" />
+            android:textSize="18dp"
+            android:transitionName="txtTitle" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -45,83 +44,83 @@
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtFullName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
+                    android:hint="Full Name"
                     android:inputType="text"
-                    android:hint="Full Name"/>
+                    android:singleLine="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:transitionName="edtUsername"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:transitionName="edtUsername"
                 app:counterEnabled="true"
-                app:counterMaxLength="15"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                app:counterMaxLength="15">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtUsername"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:singleLine="true"
-                    android:inputType="text"
                     android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-                    android:hint="Username"/>
+                    android:hint="Username"
+                    android:inputType="text"
+                    android:singleLine="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
+                    android:hint="Email"
                     android:inputType="textEmailAddress"
-                    android:hint="Email"/>
+                    android:singleLine="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtPhoneNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
+                    android:hint="Phone Number"
                     android:inputType="phone"
-                    android:hint="Phone Number"/>
+                    android:singleLine="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:transitionName="edtPassword"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:passwordToggleEnabled="true"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                android:transitionName="edtPassword"
+                app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
+                    android:hint="Password"
                     android:inputType="textPassword"
-                    android:hint="Password"/>
+                    android:singleLine="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -129,24 +128,23 @@
 
         <Button
             android:id="@+id/btnSignUp"
-            android:transitionName="btn1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/black"
+            android:text="Sign Up"
             android:textColor="@android:color/white"
-            android:text="Sign Up"/>
+            android:transitionName="btn1" />
 
         <Button
             android:id="@+id/btnLogin"
-            android:transitionName="btn2"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:elevation="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:background="@android:color/white"
-            android:text="Already have an account? Login"/>
+            android:text="Already have an account? Login"
+            android:transitionName="btn2" />
 
     </LinearLayout>
 
