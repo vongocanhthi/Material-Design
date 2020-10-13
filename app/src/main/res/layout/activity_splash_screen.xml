@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.MainActivity"
+    android:orientation="vertical"
+    android:background="#FECE2F">
+
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:transitionName="imgLogo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_car"/>
+
+    <TextView
+        android:id="@+id/txtSlogan"
+        android:transitionName="txtSlogan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Super car"
+        android:textSize="50sp"
+        android:textAlignment="center"
+        android:fontFamily="@font/banger"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
+        android:textColor="@android:color/white"/>
+
+</RelativeLayout>
