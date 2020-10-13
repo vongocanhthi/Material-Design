@@ -130,7 +130,7 @@
             android:id="@+id/btnSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/black"
+            android:backgroundTint="@android:color/black"
             android:text="Sign Up"
             android:textColor="@android:color/white"
             android:transitionName="btn1" />

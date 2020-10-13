@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -52,6 +53,17 @@ public class SignUpActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         funSignUp();
+        funLogin();
+
+    }
+
+    private void funLogin() {
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void funSignUp() {
