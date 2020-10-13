@@ -4,13 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.vnat.materialdesign.Model.User;
@@ -70,22 +75,95 @@ public class SignUpActivity extends AppCompatActivity {
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                database = FirebaseDatabase.getInstance();
-                reference = database.getReference("users");
-
-                String fullName = edtFullName.getText().toString();
-                String username = edtUsername.getText().toString();
-                String email = edtEmail.getText().toString();
-                String phoneNumber = edtPhoneNumber.getText().toString();
-                String password = edtPassword.getText().toString();
-
-                User user = new User(fullName,username,email,phoneNumber, password);
-
-                reference.child(username).setValue(user);
-
-                Toast.makeText(SignUpActivity.this, "Account registration is successful", Toast.LENGTH_SHORT).show();
+                if (validateFullName() && validateUsername() && validateEmail() && validatePhoneNumber() && validatePassword()) {
+                    Toast.makeText(SignUpActivity.this, "Account registration is successful", Toast.LENGTH_SHORT).show();
+                }
+//                database = FirebaseDatabase.getInstance();
+//                reference = database.getReference("users");
+//
+//                String fullName = edtFullName.getText().toString();
+//                String username = edtUsername.getText().toString();
+//                String email = edtEmail.getText().toString();
+//                String phoneNumber = edtPhoneNumber.getText().toString();
+//                String password = edtPassword.getText().toString();
+//
+//                User user = new User(fullName,username,email,phoneNumber, password);
+//
+//                reference.child(username).setValue(user);
+//
             }
         });
+    }
+
+    private boolean validateFullName() {
+        String fullName = edtFullName.getText().toString();
+
+        if (fullName.isEmpty()) {
+            edtFullName.setError("Full name can not be empty");
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean validateUsername() {
+        String username = edtUsername.getText().toString();
+
+        if (username.isEmpty()) {
+            edtUsername.setError("Username can not be empty");
+            return false;
+        } else {
+            if (username.length() <= 5) {
+                edtUsername.setError("Username length > 5");
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private boolean validateEmail() {
+        String email = edtEmail.getText().toString();
+
+        if (email.isEmpty()) {
+            edtEmail.setError("Email can not be empty");
+            return false;
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            edtEmail.setError("Invalid email address");
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean validatePhoneNumber() {
+        String phoneNumber = edtPhoneNumber.getText().toString();
+
+        if (phoneNumber.isEmpty()) {
+            edtPhoneNumber.setError("Phone number can not be empty");
+            return false;
+        } else if (!Patterns.PHONE.matcher(phoneNumber).matches()) {
+            edtPhoneNumber.setError("Invalid phone number");
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean validatePassword() {
+        String password = edtPassword.getText().toString();
+
+        if (password.isEmpty()) {
+            edtPassword.setError("Password can not be empty");
+            return false;
+        } else {
+            if (password.length() <= 5) {
+                edtPassword.setError("Username length > 5");
+                return false;
+            }
+        }
+
+        return true;
     }
 
 }
