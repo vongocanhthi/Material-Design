@@ -67,7 +67,6 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
-                finish();
             }
         });
     }
