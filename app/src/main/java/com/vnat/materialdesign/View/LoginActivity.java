@@ -74,12 +74,12 @@ public class LoginActivity extends AppCompatActivity {
 
                     DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
 
-                    reference.addValueEventListener(new ValueEventListener() {
+                    reference.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if (snapshot.exists()) {
                                 String passwordFromDB = snapshot.child(username).child("password").getValue(String.class);
-//                                Log.i("zzz", usernameFromDB+"");
+
                                 if (password.equals(passwordFromDB)) {
                                     String fullNameFromDB = snapshot.child(username).child("fullName").getValue(String.class);
                                     String usernameFromDB = snapshot.child(username).child("username").getValue(String.class);
@@ -103,7 +103,6 @@ public class LoginActivity extends AppCompatActivity {
                                 }
 
                             }
-
                         }
 
                         @Override

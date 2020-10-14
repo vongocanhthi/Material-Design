@@ -2,11 +2,17 @@ package com.vnat.materialdesign.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Pair;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
@@ -18,24 +24,25 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SignUpActivity extends AppCompatActivity {
+    @BindView(R.id.imgLogo)
+    ImageView imgLogo;
+
+    @BindView(R.id.txtTitle)
+    TextView txtTitle;
+
     @BindView(R.id.edtFullName)
     EditText edtFullName;
-
     @BindView(R.id.edtUsername)
     EditText edtUsername;
-
     @BindView(R.id.edtEmail)
     EditText edtEmail;
-
     @BindView(R.id.edtPhoneNumber)
     EditText edtPhoneNumber;
-
     @BindView(R.id.edtPassword)
     EditText edtPassword;
 
     @BindView(R.id.btnSignUp)
     Button btnSignUp;
-
     @BindView(R.id.btnLogin)
     Button btnLogin;
 
@@ -50,44 +57,73 @@ public class SignUpActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        funSignUp();
-        funLogin();
+        funClickSignUp();
+        funClickLogin();
 
     }
 
-    private void funLogin() {
+    private void funClickLogin() {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+                finish();
             }
         });
     }
 
-    private void funSignUp() {
+    private void funClickSignUp() {
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (validateFullName() && validateUsername() && validateEmail() && validatePhoneNumber() && validatePassword()) {
+                    funAddUser();
+                    funIntentVerifyOtp();
 
-                    database = FirebaseDatabase.getInstance();
-                    reference = database.getReference("users");
+//                    Toast.makeText(SignUpActivity.this, "Your account has been created successfully", Toast.LENGTH_LONG).show();
 
-                    String fullName = edtFullName.getText().toString();
-                    String username = edtUsername.getText().toString();
-                    String email = edtEmail.getText().toString();
-                    String phoneNumber = edtPhoneNumber.getText().toString();
-                    String password = edtPassword.getText().toString();
-
-                    User user = new User(fullName, username, email, phoneNumber, password);
-
-                    reference.child(username).setValue(user);
-
-                    Toast.makeText(SignUpActivity.this, "Account registration is successful", Toast.LENGTH_SHORT).show();
+//                    new Handler().postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            onBackPressed();
+//                        }
+//                    }, 3000);
                 }
 
             }
         });
+    }
+
+    private void funAddUser() {
+        database = FirebaseDatabase.getInstance();
+        reference = database.getReference("users");
+
+        String fullName = edtFullName.getText().toString();
+        String username = edtUsername.getText().toString();
+        String email = edtEmail.getText().toString();
+        String phoneNumber = edtPhoneNumber.getText().toString();
+        String password = edtPassword.getText().toString();
+
+        User user = new User(fullName, username, email, phoneNumber, password);
+
+        reference.child(username).setValue(user);
+    }
+
+    private void funIntentVerifyOtp() {
+        Intent intent = new Intent(SignUpActivity.this, VerifyPhoneNumberActivity.class);
+
+        Pair[] pairs = new Pair[4];
+        pairs[0] = new Pair<View, String>(imgLogo, "imgLogo");
+        pairs[1] = new Pair<View, String>(txtTitle, "txtTitle");
+        pairs[2] = new Pair<View, String>(edtPhoneNumber, "verifyOtp");
+        pairs[3] = new Pair<View, String>(btnSignUp, "btn1");
+
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SignUpActivity.this, pairs);
+
+        String phoneNumber = edtPhoneNumber.getText().toString();
+        intent.putExtra("phoneNumber", phoneNumber);
+
+        startActivity(intent, options.toBundle());
     }
 
     private boolean validateFullName() {

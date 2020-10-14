@@ -50,4 +50,5 @@ public class UserProfileActivity extends AppCompatActivity {
         edtEmail.setText(emailFromDB);
         edtPhoneNumber.setText(phoneNumberFromDB);
     }
+
 }
