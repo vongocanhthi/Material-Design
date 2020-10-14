@@ -2,20 +2,13 @@ package com.vnat.materialdesign.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.vnat.materialdesign.Model.User;
@@ -66,7 +59,7 @@ public class SignUpActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                onBackPressed();
             }
         });
     }
@@ -76,21 +69,23 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (validateFullName() && validateUsername() && validateEmail() && validatePhoneNumber() && validatePassword()) {
+
+                    database = FirebaseDatabase.getInstance();
+                    reference = database.getReference("users");
+
+                    String fullName = edtFullName.getText().toString();
+                    String username = edtUsername.getText().toString();
+                    String email = edtEmail.getText().toString();
+                    String phoneNumber = edtPhoneNumber.getText().toString();
+                    String password = edtPassword.getText().toString();
+
+                    User user = new User(fullName, username, email, phoneNumber, password);
+
+                    reference.child(username).setValue(user);
+
                     Toast.makeText(SignUpActivity.this, "Account registration is successful", Toast.LENGTH_SHORT).show();
                 }
-//                database = FirebaseDatabase.getInstance();
-//                reference = database.getReference("users");
-//
-//                String fullName = edtFullName.getText().toString();
-//                String username = edtUsername.getText().toString();
-//                String email = edtEmail.getText().toString();
-//                String phoneNumber = edtPhoneNumber.getText().toString();
-//                String password = edtPassword.getText().toString();
-//
-//                User user = new User(fullName,username,email,phoneNumber, password);
-//
-//                reference.child(username).setValue(user);
-//
+
             }
         });
     }
@@ -113,8 +108,8 @@ public class SignUpActivity extends AppCompatActivity {
             edtUsername.setError("Username can not be empty");
             return false;
         } else {
-            if (username.length() <= 5) {
-                edtUsername.setError("Username length > 5");
+            if (username.length() < 6) {
+                edtUsername.setError("Username length >= 6");
                 return false;
             }
         }
@@ -157,8 +152,8 @@ public class SignUpActivity extends AppCompatActivity {
             edtPassword.setError("Password can not be empty");
             return false;
         } else {
-            if (password.length() <= 5) {
-                edtPassword.setError("Username length > 5");
+            if (password.length() < 6) {
+                edtPassword.setError("Password length >= 6");
                 return false;
             }
         }

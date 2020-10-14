@@ -27,6 +27,7 @@
                 app:cardCornerRadius="50dp">
 
                 <ImageView
+                    android:id="@+id/imgAvatar"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:scaleType="centerCrop"
@@ -40,6 +41,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/txtFullName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bungee"
@@ -49,6 +51,7 @@
                     android:textSize="20sp" />
 
                 <TextView
+                    android:id="@+id/txtUsername"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Username"
@@ -197,6 +200,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
+                android:id="@+id/btnUpdate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
